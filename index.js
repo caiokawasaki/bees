@@ -67,12 +67,11 @@ function spawnStreamer() {
 
     cam.stderr.on("data", (d) => {
         const msg = d.toString()
-        // rpicam outputs frame stats to stderr - only treat actual errors as errors
+        // rpicam outputs frame stats to stderr - only log actual errors, skip frame stats
         if (/error|fail|fatal|cannot/i.test(msg)) {
             process.stderr.write(`[rpicam] ${msg}`)
-        } else {
-            process.stdout.write(`[rpicam] ${msg}`)
         }
+        // Frame stats (fps, exposure, gain) are discarded - too verbose
     })
 
     const restart = (why, code) => {
