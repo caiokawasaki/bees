@@ -1,0 +1,12 @@
+{
+  "name": "bees",
+  "version": "1.0.0",
+  "description": "Bees Raspbery Pi 4b setup",
+  "license": "ISC",
+  "author": "Caio Kawasaki",
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}

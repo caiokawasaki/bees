@@ -1,0 +1,7 @@
+node_modules
+*.local
+*.production
+
+.DS_Store
+.idea
+.env
