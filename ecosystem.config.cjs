@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const APP_DIR = process.env.APP_DIR || (() => {
     throw new Error("APP_DIR environment variable is required. Set it in your .env file or export it before running PM2.")
 })()
