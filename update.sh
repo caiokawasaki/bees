@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source ~/.bashrc 2>/dev/null || true
+source ~/.profile 2>/dev/null || true
+
 : "${APP_DIR:?APP_DIR environment variable is required}"
 BRANCH="main"
 PM2_NAME="camera-stream"
@@ -26,7 +29,7 @@ if [ "$LOCAL" != "$REMOTE" ]; then
 
   cp .env.backup .env 2>/dev/null || true
   
-  if ! npm ci --omit=dev >/dev/null 2>&1; then
+  if ! npm ci --omit=dev 2>&1; then
     echo "$(date '+%Y-%m-%d %H:%M:%S') - Error: npm ci failed, aborting update"
     exit 1
   fi
