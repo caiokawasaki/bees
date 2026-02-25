@@ -12,7 +12,7 @@ if (!RTMP_URL) {
 const WIDTH = 1920
 const HEIGHT = 1080
 const FPS = 30
-const BITRATE = 12_000_000
+const BITRATE = 6_000_000  // Twitch recommended for 1080p30
 
 let stopping = false
 
@@ -25,6 +25,7 @@ function spawnStreamer() {
         "--rotation", "180",
 
         "--codec", "h264",
+        "--profile", "high",
         "--bitrate", String(BITRATE),
         "--intra", "60",
         "--inline",
@@ -33,6 +34,9 @@ function spawnStreamer() {
         "--sharpness", "1.2",
         "--contrast", "1.1",
         "--saturation", "1.05",
+
+        "--awb", "auto",
+        "--metering", "average",
 
         "-t", "0",
         "-o", "-",
@@ -50,9 +54,9 @@ function spawnStreamer() {
         "-i", "pipe:0",
 
         "-c:v", "copy",
-        "-b:v", "12000k",
-        "-maxrate", "14000k",
-        "-bufsize", "28000k",
+        "-b:v", "6000k",
+        "-maxrate", "6000k",
+        "-bufsize", "12000k",
         "-g", "60",
 
         "-pix_fmt", "yuv420p",
