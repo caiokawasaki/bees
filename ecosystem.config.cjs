@@ -15,7 +15,7 @@ module.exports = {
             restart_delay: 2000,
             max_restarts: 50,
 
-            out_file: "/dev/null",
+            out_file: "./logs/camera-stream.out.log",
             error_file: "./logs/camera-stream.err.log",
             time: true,
         },

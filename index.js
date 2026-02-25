@@ -65,7 +65,15 @@ function spawnStreamer() {
 
     cam.stdout.pipe(ff.stdin)
 
-    cam.stderr.on("data", (d) => process.stderr.write(`[rpicam] ${d.toString()}`))
+    cam.stderr.on("data", (d) => {
+        const msg = d.toString()
+        // rpicam outputs frame stats to stderr - only treat actual errors as errors
+        if (/error|fail|fatal|cannot/i.test(msg)) {
+            process.stderr.write(`[rpicam] ${msg}`)
+        } else {
+            process.stdout.write(`[rpicam] ${msg}`)
+        }
+    })
 
     const restart = (why, code) => {
         if (stopping) return
