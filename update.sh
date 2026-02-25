@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source ~/.bashrc 2>/dev/null || true
-source ~/.profile 2>/dev/null || true
+# Load environment for cron (use . instead of source for sh compatibility)
+. ~/.bashrc 2>/dev/null || true
+. ~/.profile 2>/dev/null || true
+
+# Ensure npm is in PATH (common locations)
+export PATH="$PATH:/usr/local/bin:$HOME/.npm-global/bin:$HOME/.nvm/versions/node/$(ls -t $HOME/.nvm/versions/node 2>/dev/null | head -1)/bin"
 
 : "${APP_DIR:?APP_DIR environment variable is required}"
 BRANCH="main"
