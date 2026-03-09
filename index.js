@@ -11,7 +11,7 @@ if (!RTMP_URL) {
 // Video settings
 const WIDTH = 1920
 const HEIGHT = 1080
-const FPS = 30
+const FPS = 15
 const BITRATE = 6_000_000  // Twitch recommended for 1080p30
 
 let stopping = false
@@ -21,7 +21,7 @@ function spawnStreamer() {
         "--width", String(WIDTH),
         "--height", String(HEIGHT),
         "--framerate", String(FPS),
-        "--shutter", "20000",
+        "--shutter", "80000",
         "--rotation", "180",
 
         "--codec", "h264",
