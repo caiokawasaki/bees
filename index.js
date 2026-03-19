@@ -28,22 +28,21 @@ function spawnStreamer() {
         "--codec", "h264",
         "--profile", "high",
         "--bitrate", String(BITRATE),
-        "--intra", "60",
+        "--intra", String(FPS * 2),
         "--inline",
 
-        // "--denoise", "cdn_fast",
-        // "--sharpness", "1.2",
-        // "--contrast", "1.1",
-        // "--saturation", "1.05",
-
         "--denoise", "cdn_hq",
-        "--gain", "8",
         "--contrast", "1.05",
         "--sharpness", "1.0",
-        "--saturation", "0.6",
+        "--saturation", "0.9",
 
         "--awb", "auto",
         "--metering", "average",
+
+        "--autofocus-mode", "continuous",
+        "--autofocus-range", "normal",
+        "--autofocus-speed", "normal",
+        "--autofocus-window", "0.40,0.40,0.20,0.20",
 
         "-t", "0",
         "-o", "-",
@@ -61,13 +60,10 @@ function spawnStreamer() {
         "-i", "pipe:0",
 
         "-c:v", "copy",
-        "-b:v", "6000k",
-        "-maxrate", "6000k",
-        "-bufsize", "12000k",
-        "-g", "60",
-
-        "-pix_fmt", "yuv420p",
         "-an",
+
+        "-g", String(FPS * 2),
+
         "-f", "flv",
         RTMP_URL,
     ]
