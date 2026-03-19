@@ -11,7 +11,7 @@ if (!RTMP_URL) {
 // Video settings
 const WIDTH = 1920
 const HEIGHT = 1080
-const FPS = 10
+const FPS = 20
 const SHUTTER = 80_000
 const BITRATE = 6_000_000
 
